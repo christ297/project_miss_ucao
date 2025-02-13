@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Élection Miss</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Votez pour votre Miss préférée !</h1>
+
+    <!-- Ajout du CSRF token dans un formulaire caché -->
+    <form>
+        {% csrf_token %}
+    </form>
+
+    <div class="container">
+        {% for miss in misses %}
+            <div class="miss-card">
+                <img src="{{ miss.photo.url }}" alt="{{ miss.name }}">
+                <h2>{{ miss.name }}</h2>
+                <p>{{ miss.description }}</p>
+                <button class="vote-btn" onclick="voter('{{ miss.id }}')">Voter</button>
+                <p>Votes : <span id="votes-{{ miss.id }}">{{ miss.votes.count }}</span></p>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+</html>
