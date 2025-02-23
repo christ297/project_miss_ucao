@@ -16,10 +16,3 @@ html5lib==1.1
 httpcore==1.0.7
 httplib2==0.20.2
 httpx==0.28.1
-python-apt==2.4.0+ubuntu4
-python-dateutil==2.9.0.post0
-python-debian==0.1.43+ubuntu1.1
-python-gnupg==0.4.8
-python-json-logger==3.2.1
-python-magic==0.4.24
-python-xlib==0.29
