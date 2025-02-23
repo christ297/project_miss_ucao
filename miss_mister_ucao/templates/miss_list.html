@@ -4,28 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Élection Miss</title>
+    <title>Élection Miss UCAO</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Votez pour votre Miss préférée !</h1>
+    <header>
+        <h1>Élection Miss UCAO 2025</h1>
+        <p>Votez pour votre candidate préférée !</p>
+        <input type="text" id="search" placeholder="Rechercher une candidate..." oninput="filterCandidates()">
+        <select id="sort" onchange="sortCandidates()">
+            <option value="none" {% if sort_by == 'none' %}selected{% endif %}>Rechercher par...</option>
+            <option value="name_asc" {% if sort_by == 'name_asc' %}selected{% endif %}>Nom (A-Z)</option>
+            <option value="name_desc" {% if sort_by == 'name_desc' %}selected{% endif %}>Nom (Z-A)</option>
+            <option value="votes_asc" {% if sort_by == 'votes_asc' %}selected{% endif %}>Votes (Croissant)</option>
+            <option value="votes_desc" {% if sort_by == 'votes_desc' %}selected{% endif %}>Votes (Décroissant)</option>
+        </select>
+        <button id="theme-toggle">Mode sombre</button>
+    </header>
 
-    <!-- Ajout du CSRF token dans un formulaire caché -->
-    <form>
+    <!-- Formulaire caché pour le CSRF token -->
+    <form id="csrf-form">
         {% csrf_token %}
     </form>
 
-    <div class="container">
+    <main class="container">
         {% for miss in misses %}
             <div class="miss-card">
-                <img src="{{ miss.photo.url }}" alt="{{ miss.name }}">
-                <h2>{{ miss.name }}</h2>
-                <p>{{ miss.description }}</p>
-                <button class="vote-btn" onclick="voter('{{ miss.id }}')">Voter</button>
-                <p>Votes : <span id="votes-{{ miss.id }}">{{ miss.votes.count }}</span></p>
+                <div class="miss-image">
+                    <img src="{{ miss.photo.url }}" alt="{{ miss.name }}">
+                </div>
+                <div class="miss-info">
+                    <h2>{{ miss.name }}</h2>
+                    <p>{{ miss.description }}</p>
+                    <button class="vote-btn" onclick="voter('{{ miss.id }}')">Voter</button>
+                    <p class="vote-count">Votes : <span id="votes-{{ miss.id }}">{{ miss.vote_percentage|default:"0" }}%</span></p>
+                </div>
             </div>
         {% endfor %}
+    </main>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if misses.has_previous %}
+                <a href="?page=1&sort={{ sort_by }}">&laquo; Première</a>
+                <a href="?page={{ misses.previous_page_number }}&sort={{ sort_by }}">Précédente</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ misses.number }} sur {{ misses.paginator.num_pages }}.
+            </span>
+    
+            {% if misses.has_next %}
+                <a href="?page={{ misses.next_page_number }}&sort={{ sort_by }}">Suivante</a>
+                <a href="?page={{ misses.paginator.num_pages }}&sort={{ sort_by }}">Dernière &raquo;</a>
+            {% endif %}
+        </span>
     </div>
+    <!-- Conteneur pour le graphique -->
+    <div class="chart-container">
+        <canvas id="resultsChart"></canvas>
+    </div>
+
+    <footer>
+        <p>© 2025 Élection Miss UCAO. Tous droits réservés. Codeurspro</p>
+    </footer>
+
     <script src="{% static 'js/index.js' %}"></script>
 </body>
 </html>
