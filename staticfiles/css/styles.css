@@ -1,0 +1,333 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+header {
+    background-color: #6200ea;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+body.dark-mode header {
+    background-color: #3700b3; /* Couleur du header en dark mode */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    margin: 5px 0 0;
+    font-size: 1.2rem;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.miss-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    width: 300px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .miss-card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.miss-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.miss-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.miss-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.miss-info h2 {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    color: #6200ea;
+}
+
+body.dark-mode .miss-info h2 {
+    color: #bb86fc;
+}
+
+.miss-info p {
+    font-size: 1rem;
+    color: #666;
+}
+
+body.dark-mode .miss-info p {
+    color: #ccc;
+}
+
+.vote-btn {
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .vote-btn {
+    background-color: #bb86fc;
+    color: #000000;
+}
+
+.vote-btn:hover {
+    background-color: #3700b3;
+}
+
+.vote-count {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+body.dark-mode .vote-count {
+    color: #ccc;
+}
+
+/* Styles pour la pagination */
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1rem; /* Taille de police de base */
+}
+
+.pagination a {
+    color: #6200ea;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+body.dark-mode .pagination a {
+    color: #bb86fc;
+}
+
+.pagination a:hover {
+    background-color: #6200ea;
+    color: white;
+    border: 1px solid #6200ea;
+}
+
+body.dark-mode .pagination a:hover {
+    background-color: #bb86fc;
+    color: #000000;
+}
+
+.pagination .current {
+    padding: 8px 16px;
+    background-color: #6200ea;
+    color: white;
+    border: 1px solid #6200ea;
+}
+
+body.dark-mode .pagination .current {
+    background-color: #bb86fc;
+    color: #000000;
+}
+
+/* Styles pour le texte "Page X sur Y" */
+.pagination .current {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 4px;
+    font-size: 1rem; /* Taille de police de base */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+body.dark-mode footer {
+    background-color: #000000;
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    z-index: 1000;
+}
+
+.notification.success {
+    background-color: #4caf50;
+}
+
+.notification.error {
+    background-color: #f44336;
+}
+
+.chart-container {
+    width: 100%;
+    max-width: 800px; /* Largeur maximale du graphique */
+    margin: 20px auto; /* Centrer le graphique */
+    position: relative;
+    height: 400px; /* Hauteur fixe pour le graphique */
+}
+
+/* Styles pour le menu de tri */
+#sort {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+}
+
+#search {
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+}
+
+body.dark-mode #sort {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-color: #666;
+}
+
+body.dark-mode #search {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-color: #666;
+}
+
+/* Media Queries pour le responsive design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem; /* Taille réduite pour les petits écrans */
+    }
+
+    header p {
+        font-size: 1rem; /* Taille réduite pour les petits écrans */
+    }
+
+    .miss-card {
+        width: calc(100% - 30px); /* Largeur ajustée pour les petits écrans */
+        margin: 10px;
+    }
+
+    .vote-btn {
+        padding: 8px 16px; /* Padding réduit pour les petits écrans */
+    }
+
+    .pagination a {
+        padding: 6px 12px; /* Padding réduit pour les petits écrans */
+        margin: 0 2px; /* Marge réduite pour les petits écrans */
+    }
+
+    .pagination .current {
+        padding: 6px 12px; /* Padding réduit pour les petits écrans */
+        font-size: 0.9rem; /* Taille réduite pour les petits écrans */
+    }
+
+    .chart-container {
+        height: 300px; /* Hauteur réduite pour les petits écrans */
+    }
+
+    #sort {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    #search {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem; /* Taille encore plus réduite pour les très petits écrans */
+    }
+
+    header p {
+        font-size: 0.9rem; /* Taille encore plus réduite pour les très petits écrans */
+    }
+
+    .miss-info h2 {
+        font-size: 1.2rem; /* Taille réduite pour les très petits écrans */
+    }
+
+    .miss-info p {
+        font-size: 0.9rem; /* Taille réduite pour les très petits écrans */
+    }
+
+    .vote-btn {
+        padding: 6px 12px; /* Padding encore plus réduit pour les très petits écrans */
+    }
+
+    .pagination a {
+        padding: 4px 8px; /* Padding encore plus réduit pour les très petits écrans */
+        margin: 0 1px; /* Marge encore plus réduite pour les très petits écrans */
+    }
+
+    .pagination .current {
+        padding: 4px 8px; /* Padding encore plus réduit pour les très petits écrans */
+        font-size: 0.8rem; /* Taille encore plus réduite pour les très petits écrans */
+    }
+
+    .chart-container {
+        height: 250px; /* Hauteur encore plus réduite pour les très petits écrans */
+    }
+
+    #sort {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+
+    #search {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+}
