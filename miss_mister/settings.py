@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +25,7 @@ SECRET_KEY = 'django-insecure-%8bw3qf3rbor38d!2t#739+lkhy&6!hed++odfj!7**o&subu9
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
 ALLOWED_HOSTS = ['*']
 
 
@@ -39,6 +38,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'miss_mister_ucao/static'),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -114,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'UTC'
 
